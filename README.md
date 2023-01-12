@@ -38,6 +38,7 @@
 ```
 npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
 ```
+
 > --example 뒤에있는 github url을 예제로 레포를 딸 것이다 라는 명령어 뜻이다.
 
 ## 🌟 실행
@@ -47,3 +48,17 @@ npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/n
   npm run dev = yarn dev (동일 명령어)
   해당 프로젝트에서 yarn 설치함
 ```
+
+---
+
+turbo라는 걸로 mono repo 관리가 가능하다.
+
+## next.js에서 제공하는 기능들
+
+- 코드들은 고치는대로 변경된다 (= fast refresh)
+- `pages/product/[slug]` 라는 표기가 wildcard로 동작하나보다
+  - 다이나믹하게 path를 변경할 수 있었다.
+- api 요청을 어디론가 하고 응답을 받는다.
+  - api에 요청에 대한 응답들을 코드에서 조회가 가능하다.
+
+## data fetching
