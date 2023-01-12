@@ -62,3 +62,33 @@ turbo라는 걸로 mono repo 관리가 가능하다.
   - api에 요청에 대한 응답들을 코드에서 조회가 가능하다.
 
 ## data fetching
+
+화면에 무언가를 그리려면 결국 어디선가 data를 가져와야한다. (=이게 프론트엔드의 역할)
+
+- next가 제시하는 4가지 데이터 패칭 방법
+
+1. SSR
+2. CSR
+3. SSG
+4. ISR
+
+## SSR (서버 사이드 렌더링)
+
+- 서버가 데이터를 가져와서 그린다.
+- SSR을 담당하는 함수 : `getServerSideProps`
+
+```
+export async function getServerSideProps() {
+  console.log('server');
+
+  return {
+    props: { time: new Date().toISOString() },
+  };
+}
+```
+
+서버에서 데이터를 가져오고 페이지에다가 props로 데이터를 전달 받았다.
+
+## CSR (Client Side Render)
+
+- 클라이언트가 데이터를 가져와서 그린다.
