@@ -113,4 +113,5 @@ export async function getServerSideProps() {
 - 정적인 사이트를 생성한다 : 정적인 사이트를 데이터를 가져와서 그려준다.
 - SSG을 담당하는 함수로는 `getStaticProps`라는 함수가 있다.
 
-<img width="920" alt="스크린샷 2023-01-13 오후 11 00 16" src="https://user-images.githubusercontent.com/71499150/212338216-1a689a25-4a05-4c03-b9b8-743243ee27c6.png">
+<img width="920" alt="스크린샷 2023-01-13 오후 11 00 16" src="https://user-images.githubusercontent.com/71499150/212338940-a40a07bf-f7eb-41cb-8efa-12aa97d2e233.png">
+
