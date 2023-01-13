@@ -91,7 +91,7 @@ export async function getServerSideProps() {
 
 서버에서 데이터를 가져오고 페이지에다가 props로 데이터를 전달 받았다.
 
-<img width="1544" alt="스크린샷 2023-01-13 오후 10 37 11" src="https://user-images.githubusercontent.com/71499150/212333344-ce98ae76-89ab-4faf-90e0-5bf45810438c.png">
+![image](https://user-images.githubusercontent.com/71499150/212335593-4f09f165-6796-47ac-830c-c1d9f99af4e8.png)
 
 서버에서 데이터를 그려주고 있다는 것을 확인하는 과정으로 봤을 때 `server` 라는 콘솔로그 메시지가 터미널 창에서 보여지고 있다.
 
@@ -112,3 +112,5 @@ export async function getServerSideProps() {
 
 - 정적인 사이트를 생성한다 : 정적인 사이트를 데이터를 가져와서 그려준다.
 - SSG을 담당하는 함수로는 `getStaticProps`라는 함수가 있다.
+
+<img width="920" alt="스크린샷 2023-01-13 오후 11 00 16" src="https://user-images.githubusercontent.com/71499150/212338216-1a689a25-4a05-4c03-b9b8-743243ee27c6.png">
