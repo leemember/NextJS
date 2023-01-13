@@ -93,6 +93,8 @@ export async function getServerSideProps() {
 
 ![image](https://user-images.githubusercontent.com/71499150/212335593-4f09f165-6796-47ac-830c-c1d9f99af4e8.png)
 
+> 왼쪽에 시간이 찍힌 흰 배경은 웹브라우저입니다. 오른쪽은 작업한 소스코드 내용입니다.
+
 서버에서 데이터를 그려주고 있다는 것을 확인하는 과정으로 봤을 때 `server` 라는 콘솔로그 메시지가 터미널 창에서 보여지고 있다.
 
 <br />
@@ -103,6 +105,8 @@ export async function getServerSideProps() {
 - 기존 리액트 사용법과 동일하다.
 
 ![image](https://user-images.githubusercontent.com/71499150/212333892-34fa6124-e602-4e64-9ab9-e9b85d962a2c.png)
+
+> 왼쪽에 시간이 찍힌 흰 배경은 웹브라우저입니다. 오른쪽은 작업한 소스코드 내용입니다.
 
 클라이언트는 브라우저에서 그려주고 있기 때문에 웹브라우저에 있는 콘솔로그에서 'client' 라는 메시지를 확인해 볼 수 있다.
 
@@ -115,3 +119,4 @@ export async function getServerSideProps() {
 
 <img width="920" alt="스크린샷 2023-01-13 오후 11 00 16" src="https://user-images.githubusercontent.com/71499150/212338940-a40a07bf-f7eb-41cb-8efa-12aa97d2e233.png">
 
+> SSG 가 동작하는 것을 확인하고자 한다면 `yarn build` 과정을 거친 후에 `yarn run dev`를 해줘야 합니다. 그리고 path 주소 ssr 페이지에 진입했을 때, console.log가 터미널에도 웹브라우저 상에 있는 콘솔 창 그 어디에도 나타나지 않습니다.
