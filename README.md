@@ -72,7 +72,9 @@ turbo라는 걸로 mono repo 관리가 가능하다.
 3. SSG
 4. ISR
 
-## SSR (서버 사이드 렌더링)
+<br />
+
+## 🔴 SSR (서버 사이드 렌더링)
 
 - 서버가 데이터를 가져와서 그린다.
 - SSR을 담당하는 함수 : `getServerSideProps`
@@ -89,6 +91,24 @@ export async function getServerSideProps() {
 
 서버에서 데이터를 가져오고 페이지에다가 props로 데이터를 전달 받았다.
 
-## CSR (Client Side Render)
+<img width="1544" alt="스크린샷 2023-01-13 오후 10 37 11" src="https://user-images.githubusercontent.com/71499150/212333344-ce98ae76-89ab-4faf-90e0-5bf45810438c.png">
+
+서버에서 데이터를 그려주고 있다는 것을 확인하는 과정으로 봤을 때 `server` 라는 콘솔로그 메시지가 터미널 창에서 보여지고 있다.
+
+<br />
+
+## 🟡 CSR (Client Side Render)
 
 - 클라이언트가 데이터를 가져와서 그린다.
+- 기존 리액트 사용법과 동일하다.
+
+![image](https://user-images.githubusercontent.com/71499150/212333892-34fa6124-e602-4e64-9ab9-e9b85d962a2c.png)
+
+클라이언트는 브라우저에서 그려주고 있기 때문에 웹브라우저에 있는 콘솔로그에서 'client' 라는 메시지를 확인해 볼 수 있다.
+
+<br />
+
+## 🟠 SSG (Statice-Site Generation)
+
+- 정적인 사이트를 생성한다 : 정적인 사이트를 데이터를 가져와서 그려준다.
+- SSG을 담당하는 함수로는 `getStaticProps`라는 함수가 있다.
