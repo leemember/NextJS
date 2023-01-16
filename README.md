@@ -120,7 +120,6 @@ export async function getServerSideProps() {
 
 <img width="837" alt="스크린샷 2023-01-13 오후 11 13 20" src="https://user-images.githubusercontent.com/71499150/212340176-4c06b7f5-6ed5-456d-ac3c-311b9b130b13.png">
 
-
 > SSG 가 동작하는 것을 확인하고자 한다면 `yarn build` 과정을 거친 후에 `yarn run dev`를 해줘야 합니다. 그리고 path 주소 ssr 페이지에 진입했을 때, console.log가 터미널에도 웹브라우저 상에 있는 콘솔 창 그 어디에도 나타나지 않습니다.
 
 <br />
@@ -136,12 +135,12 @@ export async function getStaticProps() {
 
   return {
     props: { time: new Date().toISOString() },
-    revalidate: 1, // 1초 단위로
+    revalidate: 1, // 📍 1초 단위로 => 이 함수를 통해서 값을 리턴해서 다시 그려준다.
   };
 }
 ```
 
-> 서버가 1초 간격으로 리턴된다. 어떤 제품을 계속 판매하고 그 제품의 정보를 계속 업데이트를 한다고 할 경우 이런 함수를 적절하게 사용하여 작업할 수가 있다.
+> 서버가 1초 간격으로 리턴된다. 어떤 제품을 계속 판매하고 그 제품의 정보를 계속 업데이트를 한다고 할 경우 이런 함수를 적절하게 사용하여 작업할 수가 있다. (ex) 쇼핑몰에서 자주 사용
 
 <br />
 
