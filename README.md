@@ -144,7 +144,7 @@ export async function getStaticProps() {
 
 <br />
 
-## 🔵 Data Fetching 데이터 패칭
+## 🔵 Data Fetching 데이터 패칭에 대한 내용 요약
 
 - 페이지를 그리는 방식 : 데이터를 가져와서 그린다.
 - SSR / CSR / SSG / ISG : 총 4가지 방식으로 데이터를 패칭한다.
