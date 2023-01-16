@@ -118,7 +118,8 @@ export async function getServerSideProps() {
 - SSG을 담당하는 함수로는 `getStaticProps`라는 함수가 있다.
 - 언제쓰이나 ? 블로그 같이 정적일 수 있는 것들을 이것을 사용한다.
 
-<img width="920" alt="스크린샷 2023-01-13 오후 11 00 16" src="https://user-images.githubusercontent.com/71499150/212338940-a40a07bf-f7eb-41cb-8efa-12aa97d2e233.png">
+<img width="837" alt="스크린샷 2023-01-13 오후 11 13 20" src="https://user-images.githubusercontent.com/71499150/212340176-4c06b7f5-6ed5-456d-ac3c-311b9b130b13.png">
+
 
 > SSG 가 동작하는 것을 확인하고자 한다면 `yarn build` 과정을 거친 후에 `yarn run dev`를 해줘야 합니다. 그리고 path 주소 ssr 페이지에 진입했을 때, console.log가 터미널에도 웹브라우저 상에 있는 콘솔 창 그 어디에도 나타나지 않습니다.
 
