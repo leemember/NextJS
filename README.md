@@ -150,3 +150,20 @@ export async function getStaticProps() {
 - SSR / CSR / SSG / ISG : 총 4가지 방식으로 데이터를 패칭한다.
 - SSG : `yarn dev` 로는 SSR 처럼 동작한다.
 - SSR은 서버 부하가 일어나니 필요에 따라 SSG와 ISR을 적절하게 쓰면 좋다.
+
+<br />
+
+## 🍥 Layout / Pages / Image
+
+- Pre-rendering : SEO 와 초기 로딩 속도
+- SSG vs SSR : SSG은 빌드 시 / SSR은 요청 시
+- Layout : pages/\_app.js 활용해서 페이지 공통화
+- Images : 최적화된 이미지 활용 util
+
+<br />
+
+### Next기반으로 라우터 하는 법
+
+- Next.js의 Router는 file-systems 기반이다.
+- `pages/` 혹은 `src/pages/`
+- `pages/index.js` 와 `src/pages/index.js` 둘 다 있다면 우선순위는 `pages/index.js` 가 먼저다. 하지만 개발할 때 익숙한 환경으로는 후자이긴 하다.

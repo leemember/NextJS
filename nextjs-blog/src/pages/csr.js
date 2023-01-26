@@ -1,16 +1,15 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import { useEffect, useState } from 'react'
 
-export async function getStaticProps() {
-  console.log("server");
+export default function Home() {
+  const [time, setTime] = useState()
 
-  return {
-    props: { time: new Date().toISOString() },
-    revalidate: 1, // 1초 단위로
-  };
-}
+  useEffect(() => {
+    console.log('client')
+    setTime(new Date().toISOString())
+  }, [])
 
-export default function ISR({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +27,7 @@ export default function ISR({ time }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
         </a>
       </footer>
@@ -84,5 +83,5 @@ export default function ISR({ time }) {
         }
       `}</style>
     </div>
-  );
+  )
 }

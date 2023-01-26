@@ -1,15 +1,16 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
 export async function getStaticProps() {
-  console.log("server");
+  console.log('server')
 
   return {
     props: { time: new Date().toISOString() },
-  };
+    revalidate: 1, // 1초 단위로
+  }
 }
 
-export default function SSG({ time }) {
+export default function ISR({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -27,7 +28,7 @@ export default function SSG({ time }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
         </a>
       </footer>
@@ -83,5 +84,5 @@ export default function SSG({ time }) {
         }
       `}</style>
     </div>
-  );
+  )
 }

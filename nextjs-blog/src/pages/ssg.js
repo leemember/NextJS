@@ -1,15 +1,15 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { useEffect, useState } from "react";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
-export default function Home() {
-  const [time, setTime] = useState();
+export async function getStaticProps() {
+  console.log('server')
 
-  useEffect(() => {
-    console.log("client");
-    setTime(new Date().toISOString());
-  }, []);
+  return {
+    props: { time: new Date().toISOString() },
+  }
+}
 
+export default function SSG({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -27,7 +27,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
         </a>
       </footer>
@@ -83,5 +83,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  );
+  )
 }
