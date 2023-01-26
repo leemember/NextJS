@@ -162,8 +162,57 @@ export async function getStaticProps() {
 
 <br />
 
-### Next기반으로 라우터 하는 법
+---
+
+<br />
+
+### 작업 들어가기 전, Prettier 설정
+
+```
+$yarn prettier-fix
+```
+
+- yarn add -D prettier // prettier 추가
+- .prettierrc // 파일 추가
+- 패키지에 prettier-fix 명령 추가
+
+<br />
+
+### 🍔 Next기반으로 라우터 하는 법
 
 - Next.js의 Router는 file-systems 기반이다.
 - `pages/` 혹은 `src/pages/`
 - `pages/index.js` 와 `src/pages/index.js` 둘 다 있다면 우선순위는 `pages/index.js` 가 먼저다. 하지만 개발할 때 익숙한 환경으로는 후자이긴 하다.
+
+<br>
+
+### Slug
+
+```
+pages/caategory/[slug].js => /category/:slug (ex. /category/food) 이런식으로 category 뒤에 아무 단어 집어넣어도 해당 경로로 이동된다.
+
+pages/[usename]/info.js => /:usename/info (ex. /jimmy/info) 이것도 [usename] 부분에 아무 단어 집어넣어도 해당 경로로 이동된다
+```
+
+- 파일에도 slug가 가능하고, 폴더에도 slug가 가능하다.
+
+### ...slug
+
+```
+pages/cart/[...slug].js => /cart/* (ex. /cart/2022/06/04)
+```
+
+- ...을 쓰면 depth가 무한으로 사용이 가능하다. 모든 걸 다 받아낼 수 있다.
+
+### 라우팅 정리
+
+- Router -> file ststems을 토대로 구현
+- pages/ 혹은 src/pages -> pages/ 가 우선순위, 하나만 가능하다.
+- 프로젝트 설정 -> prettier / jsoncofig.json(절대경로 변경)
+- Slug -> 다양한 위계의 다이나믹 제공해준다.
+
+<br />
+
+---
+
+<br />
