@@ -127,7 +127,7 @@ export async function getServerSideProps() {
 ## 🟢 IRG (Incremental Static **Re**generation)
 
 - 증분 정적 사이트를 재생성 한다. (특정 주기로) 정적인 사이트에 데이터를 가져와서 다시 그려준다.
-- 이걸 담담하는 함수는 `getStaticProps` 라는 함수다. 값을 리턴하면서 동작한다.
+- 이걸 담당하는 함수는 `getStaticProps` 라는 함수다. 값을 리턴하면서 동작한다.
 
 ```
 export async function getStaticProps() {
@@ -216,3 +216,46 @@ pages/cart/[...slug].js => /cart/* (ex. /cart/2022/06/04)
 ---
 
 <br />
+
+### 🔮 Dynamic Routes
+
+- [slug] 값은 어떻게 활용할 것 인가?
+  ex) pages/category/[slug].js
+
+```
+import {useRouter} from 'next/router;
+
+const router = useRouter();
+const {slug} = router.query;
+```
+
+- 이처럼 router.query의 slug를 쓰면 url에 `/category/{slug}`에 있는 `{slug}`에 입력한 값이 화면에 찍힌다.
+
+<br>
+
+### 💡 query(== ?) 추가
+
+```
+import { useRouter } from 'next/router'
+
+export default function CategorySlug() {
+  const router = useRouter()
+  const { slug, from } = router.query
+
+  return (
+    <h1 className="title">
+      Category {slug} from {from}
+    </h1>
+  )
+}
+
+CategorySlug.getLayout = function getLayout(page) {
+  return <>{page}</>
+}
+```
+
+- `category/sports?from=event` 라는 url이 있다고 가정했을 때, url에서는 ?를 쿼리라고 한다. 이 쿼리 기준으로 from에 무엇이 담겼는지 그에 맞는 값을 다 받아 낼 수 있다.
+
+<img width="459" alt="스크린샷 2023-01-27 오전 11 51 40" src="https://user-images.githubusercontent.com/71499150/215000071-3edd5023-c518-4704-b65a-36349ab4d0b1.png">
+
+이와같이 url 뒤에 event를 넣게 되면 화면에도 동일하게 `{from}` 값이 찍히게 된다.
