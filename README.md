@@ -259,3 +259,65 @@ CategorySlug.getLayout = function getLayout(page) {
 <img width="459" alt="스크린샷 2023-01-27 오전 11 51 40" src="https://user-images.githubusercontent.com/71499150/215000071-3edd5023-c518-4704-b65a-36349ab4d0b1.png">
 
 이와같이 url 뒤에 event를 넣게 되면 화면에도 동일하게 `{from}` 값이 찍히게 된다.
+
+<br>
+
+### 🖐️ 다중 슬러그
+
+- pages/cart/[...slug].js
+
+```
+const {slug} = router.query;
+```
+
+여기서 slug는 배열이다.
+
+- 경로 : pages/cart/[...date].js
+
+```
+import { useRouter } from 'next/router'
+
+export default function CartDateSlug() {
+  const router = useRouter()
+  const { date } = router.query
+
+  return (
+    <>
+      <h1 className="title">CartDate Slug {JSON.stringify(date)}</h1>
+    </>
+  )
+}
+
+CartDateSlug.getLayout = function getLayout(page) {
+  return <>{page}</>
+}
+```
+
+![](https://velog.velcdn.com/images/leemember/post/887604df-feb8-47d4-b28c-196e4035a614/image.png)
+
+이처럼 url에 다중 슬러그들을 전부 화면에 뿌려준다. `JSON.stringify`로 감쌋기 떄문에 "" 문자열의 형식으로 배열 안에 값이 담겨 나온다.
+
+- 옵셔널하게 슬러그 값이 없어도 동작할 수 있도록 하려면 `[[...date]].js` 이처럼 대괄호를 2번 감싸면 된다.
+
+![](https://velog.velcdn.com/images/leemember/post/df22d1c3-a469-45c1-8d59-917ca48a619c/image.png)
+
+<br>
+
+### 🖐️ Shallow Routing
+
+- getServerSideProps / getStaticProps 등을 다시 실행시키지 않고, 현재 상태를 잃지 않고 url 변경하는 방법
+
+#### 👀 상태는 유지하면서 URL만 바꾸고 싶은 경우 ?
+
+- 사용자가 어떤 동작을 했고, 그 기록을 query로 남기고 싶을때
+  (👉 장점 : query로 남기면 사용자가 새로고침을 해도 유지된다.)
+- 특정 페이지를 10페이지 갔다해도 새로고침해도 그게 유지된다. 로컬스토리지나 세션스토리지를 통해 새로고침을 해도 상태를 유지시킬 수 있지만 query로 해도 그 상태가 유지되게 할 수 있다.
+
+사용자의 행동을 기록한 행위들이다. 근데, url 을 바꿨다고해서 페이지가 처음부터 다시 렌더된다거나 원치 않는 데이터 패칭까지 된다면 비효율적일 수가 있다. 그러므로 Shallow Routing이 필요한 것이다 !
+
+#### **Data fetching**을 일으키고 싶지 않다면 ?
+
+- url을 바꾸는 3가지 방식이 있다.
+  - location.replace("url") : 로컬 state 유지 안됨 (리렌더)
+  - router.push(url) : 로컬 state 유지 / data fetching은 일어남
+  - router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching ❌
