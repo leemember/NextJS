@@ -311,13 +311,69 @@ CartDateSlug.getLayout = function getLayout(page) {
 
 - 사용자가 어떤 동작을 했고, 그 기록을 query로 남기고 싶을때
   (👉 장점 : query로 남기면 사용자가 새로고침을 해도 유지된다.)
-- 특정 페이지를 10페이지 갔다해도 새로고침해도 그게 유지된다. 로컬스토리지나 세션스토리지를 통해 새로고침을 해도 상태를 유지시킬 수 있지만 query로 해도 그 상태가 유지되게 할 수 있다.
+- 특정 페이지 10페이지 갔다가 새로고침 해도 그게 유지된다. <br>
+  (로컬 스토리지나 세션 스토리지를 통해 새로고침을 해도 특정 페이지의 위치를 유지시킬 수 있지만 query로 해도 그 상태가 유지되도록 할 수 있다.
 
-사용자의 행동을 기록한 행위들이다. 근데, url 을 바꿨다고해서 페이지가 처음부터 다시 렌더된다거나 원치 않는 데이터 패칭까지 된다면 비효율적일 수가 있다. 그러므로 Shallow Routing이 필요한 것이다 !
+사용자의 행동을 기록한 행위들이다. 근데, url 을 바꿨다고 해서 1️⃣ 페이지가 처음부터 다시 렌더 된다거나 2️⃣ 원치 않는 데이터 패칭까지 된다면 비효율적일 수가 있다. 그러므로 👉 **Shallow Routing** 👈이 필요한 것이다 !
 
-#### **Data fetching**을 일으키고 싶지 않다면 ?
+#### 🖐️ **Data fetching**을 일으키고 싶지 않다면 ?
 
 - url을 바꾸는 3가지 방식이 있다.
-  - location.replace("url") : 로컬 state 유지 안됨 (리렌더)
-  - router.push(url) : 로컬 state 유지 / data fetching은 일어남
-  - router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching ❌
+  - 1️⃣ location.replace("url") : 로컬 state 유지 안됨 (re-render)
+  - 2️⃣ router.push(url) : 로컬 state 유지 / data fetching은 일어남 ⭕️
+  - 3️⃣ router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching ❌
+
+<br />
+이것에 대한 예제는 `/pages/settings/my/info.js` 에서 확인할 수 있습니다.
+
+```
+      // 1️⃣ 로컬 state도 새로 바뀌면서 데이터 패칭도 다시 되고 아예 페이지를 새로 불른 것과 같다.
+      <button
+        onClick={() => {
+          alert('edit')
+          setClicked(true)
+          ⏺️ location.replace('/settings/my/info?status=editing')
+        }}
+      >
+        edit(replace)
+      </button>
+
+      <br />
+
+      // 2️⃣ 로컬 state는 유지되지만, 데이터 패칭은 일어납니다.
+      <button
+        onClick={() => {
+          alert('edit')
+          setClicked(true)
+          ⏺️ router.push('/settings/my/info?status=editing')
+        }}
+      >
+        edit(push)
+      </button>
+
+      // 3️⃣ 로컬 상태도 유지되고, 데이터 패칭도 일어나지 않는다.
+      <button
+        onClick={() => {
+          alert('edit')
+          setClicked(true)
+          router.push('/settings/my/info?status=editing', undefined, ⏺️ {
+            shallow: true,
+          })
+        }}
+      >
+        edit(shallow)
+      </button>
+```
+
+버튼 3개를 추가하여, 새로 리렌더가 되면서 **데이터 패치**를 확인하기 위해 상단 쪽에 아래와 같은 코드를 작성했습니다.
+
+```
+export async function getServerSideProps() {
+  console.log('server')
+  return {
+    props: {},
+  }
+}
+```
+
+`getServerSideProps`를 이용해서 터미널 콘솔에 'server' 라는 멘트가 찍히는지 확인을 했습니다. 그런데 `shallow`를 했을 경우에는 데이터 패칭이 안됐지만 로컬 상태는 유지되는 것을 확인할 수 있었습니다.
