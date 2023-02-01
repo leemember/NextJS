@@ -380,9 +380,89 @@ export async function getServerSideProps() {
 
 <Br>
 
-### API란?
+### API란
 
 - 컴퓨터나 컴퓨터 프로그램 사이의 연결
 - FE <=> BE 간의 연결
 - 프론트는 고객과 닿아있고, 백엔드는 DB에 닿아있다.
 - 실제 서비스 예제) `커머스 사이트 - 개발자도구 F12 - 네트워크 탭` 에서 확인 가능
+
+#### Next 에서 api 불러오기
+
+- `/pages/api/파일명.js`
+
+이처럼 pages 디렉토리 안에다가 api 폴더를 만들어서 api를 관리할 수 있다.
+
+```
+import { userDetail } from 'constants/userDetail'
+
+export default function handler(req, res) {
+  res.status(200).json(userDetail)
+}
+```
+
+이런식으로 불러와서
+
+```
+  useEffect(() => {
+    fetch('/api/user')
+      .then((res) => res.json())
+      .then((data) => {
+        setName(data.name)
+      })
+  }, [])
+```
+
+이렇게 호출해주기.
+
+#### Dynamic API Routes
+
+- `pages/api/user-info/[uid].js`
+
+📍 `api/[uid].js` 라는 파일명에 아래와 같이 다이나믹 api 라우팅
+
+```
+export default function handler(req, res) {
+  const { uid } = req.query
+  res.status(200).json({ name: `LeeHYUNJU ${uid}` })
+}
+```
+
+- Routing 에서 다뤘던 여러 Slug 활용법 적용 가능
+- 다중 Route
+
+```
+/api/post/create.js
+/api/post/[pid].js
+/api/post/[...slug].js --> 다중 slug
+/api/post/[[...slug]].js --> 옵셔널하게 쓸 수 있다.
+```
+
+🍪 쿠키 정보도 담아낼 수 있다.
+
+```
+export default function handler(req, res) {
+  const { uid } = req.query
+  const cookies = req.cookies
+  res.status(200).json({ name: `LeeHYUNJU ${uid} ${JSON.stringify(cookies)}` })
+}
+
+```
+
+![](https://velog.velcdn.com/images/leemember/post/58bd8f74-1372-4526-83a0-c426e2399a48/image.png)
+
+#### API 미들웨어
+
+- 내장 미들웨어의 기능
+
+  - req.cookies / req.query ...
+
+- req/res 관련 다양한 기능들은 Middleware 들을 활용할 수 있다.
+  ex) CORS (교차 출처 리소스 공유)
+
+#### Response
+
+- res.status(code)
+- res.json(body): serializable object
+- res.redirect(code, url) --> code는 사용자 코드를 뜻한다.
+- res.send(body) : string / object / Buffer
