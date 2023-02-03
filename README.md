@@ -124,7 +124,7 @@ export async function getServerSideProps() {
 
 <br />
 
-## 🟢 IRG (Incremental Static **Re**generation)
+## 🟢 ISG (Incremental Static **Re**generation)
 
 - 증분 정적 사이트를 재생성 한다. (특정 주기로) 정적인 사이트에 데이터를 가져와서 다시 그려준다.
 - 이걸 담당하는 함수는 `getStaticProps` 라는 함수다. 값을 리턴하면서 동작한다.
